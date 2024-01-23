@@ -14,6 +14,7 @@ import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Date
 import java.util.Locale
 
 object VisionTools {
@@ -140,6 +141,35 @@ object VisionTools {
             //
         }
 
+    }
+
+    fun convertToEnglishTime(dateTime:String):String{
+        return try {
+            // Use ThreeTenABP for API levels below 26
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+                val date: Date
+                try {
+                    date = inputFormat.parse(dateTime)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return dateTime
+                }
+                val outputFormat = SimpleDateFormat("hh:mm a", Locale.ENGLISH)
+                val formattedTime = outputFormat.format(date)
+                return formattedTime
+            } else {
+                // Use java.time for API levels 26 and above
+                val parsedDateTime = LocalDateTime.parse(dateTime)
+                val formatter = DateTimeFormatter.ofPattern("hh:mm a")
+                val formattedTime = parsedDateTime.format(formatter)
+                return formattedTime
+            }
+        } catch (e: Exception) {
+            // Handle parsing errors gracefully
+            // You can log the error here for debugging, if needed
+            dateTime
+        }
     }
 
 }
