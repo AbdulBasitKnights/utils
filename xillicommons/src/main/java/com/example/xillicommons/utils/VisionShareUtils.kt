@@ -6,12 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
 import java.io.File
 
-object XilliShareUtils {
+object VisionShareUtils {
     @SuppressLint("QueryPermissionsNeeded")
     fun shareToApp(shareAppUrl:String, imagePath:String?, context: Context){
         try {
@@ -99,6 +100,23 @@ object XilliShareUtils {
         }
         catch (e:Exception){
 //
+        }
+    }
+    fun shareApp(context: Context?){
+        try {
+            val appPackageName = context?.packageName
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Check out the App at: https://play.google.com/store/apps/details?id=$appPackageName"
+            )
+            sendIntent.type = "text/plain"
+            context?.startActivity(sendIntent)
+        }
+        catch (e:Exception){
+            Log.e("checkexcept",""+e)
+            //
         }
     }
 }
