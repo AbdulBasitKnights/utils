@@ -12,5 +12,13 @@ Add it in your root build.gradle at the end of repositories:
   Step 2. Add the dependency
   
   dependencies {
-	        implementation 'com.github.AbdulBasitKnights:utils:Tag'
+	        implementation 'com.github.AbdulBasitKnights:utils:1.0.1'
 	}
+
+
+ Step 3. Import in project
+
+ 	XilliTools.
+  	XilliShareUtils.
+
+ 
