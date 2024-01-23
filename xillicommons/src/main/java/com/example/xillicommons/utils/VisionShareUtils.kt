@@ -119,4 +119,20 @@ object VisionShareUtils {
             //
         }
     }
+    fun shareApp(context: Context?,customMessage:String){
+        try {
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                customMessage
+            )
+            sendIntent.type = "text/plain"
+            context?.startActivity(sendIntent)
+        }
+        catch (e:Exception){
+            Log.e("checkexcept",""+e)
+            //
+        }
+    }
 }
