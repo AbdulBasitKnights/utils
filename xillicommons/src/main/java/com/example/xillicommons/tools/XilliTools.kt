@@ -7,11 +7,11 @@ import android.util.Log
 import android.widget.Toast
 
 object XilliTools {
-    fun privacy(context: Context?){
+    fun privacy(context: Context?,url:String?){
         try{
             val privacyIntent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://www.xilliapps.com/privacy-policy.html")
+                Uri.parse(url)
             )
             context?.startActivity(privacyIntent)
         }
